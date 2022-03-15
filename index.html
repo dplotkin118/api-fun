@@ -12,14 +12,14 @@
                         data.forEach(function (datum) {
                             strHTML += datum.snippet.title + "<br>";
                         })
-                        console.log(data);
+                        alert(strHTML);
+                        console.log(data[0].snippet.title);
                         // document.getElementById("write2").innerHTMl = res;
                         document.getElementById("write").innerHTMl = strHTML;
                 })
         </script>
 </head>
 <body>
-        <h1> Api </h1>
     <div id="write">
 
     </div>
