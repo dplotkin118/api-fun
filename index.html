@@ -18,7 +18,6 @@
                             data.forEach(function (datum) {
                                 strHTML += datum.snippet.title + "<br>";
                             })
-                            alert(strHTML);
                             document.getElementById("write").innerHTML = strHTML;
 
 
@@ -49,7 +48,6 @@
                             data.forEach(function (datum) {
                                 strHTML += datum.snippet.title + "<br>";
                             })
-                            alert(strHTML);
                             document.getElementById("write2").innerHTML = strHTML;
                         })
                 }
@@ -60,8 +58,8 @@
     <h1>
         API Fun
     </h1>
-    <button id="first" value="Using AJAX" onclick="usingAJAX()"></button>
-    <button id="second" value="Using Fetch" onclick="usingFetch()"></button>
+    <button id="first" value="Using AJAX" onclick="usingAJAX()">Using AJAX</button>
+    <button id="second" value="Using Fetch" onclick="usingFetch()">Using Fetch</button>
     <div id="write">
 
     </div>
