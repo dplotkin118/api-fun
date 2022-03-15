@@ -1,39 +1,18 @@
 <!DOCTYPE html>
+
 <head>
-<script src="https://apis.google.com/js/api.js"></script>
-<script>
-        function authenticate() {
-                return gapi.auth2.getAuthInstance()
-                        .signIn({ scope: "https://www.googleapis.com/auth/youtube.force-ssl" })
-                        .then(function () { console.log("Sign-in successful"); },
-                                function (err) { console.error("Error signing in", err); });
-        }
-        function loadClient() {
-                gapi.client.setApiKey("AIzaSyCo4AiKXJG8iFA4ob96ZpItGUocRzfvonU");
-                return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
-                        .then(function () { console.log("GAPI client loaded for API"); },
-                                function (err) { console.error("Error loading GAPI client for API", err); });
-        }
-        // Make sure the client is loaded and sign-in is complete before calling this method.
-        function execute() {
-                return gapi.client.youtube.search.list({
-                        "part": [
-                                "snippet"
-                        ],
-                        "q": "dogs"
+        <script language="javascript">
+                res = fetch("https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=dogs&key=AIzaSyCo4AiKXJG8iFA4ob96ZpItGUocRzfvonU")
+                .then (res => res.text())
+                .then (data =>
+                {
+                        data = JSON.parse(data);
+                        document.getElementById("write").innerHTMl = data;
                 })
-                        .then(function (response) {
-                                // Handle the results here (response.result has the parsed body).
-                                console.log("Response", response);
-                        },
-                                function (err) { console.error("Execute error", err); });
-        }
-        gapi.load("client:auth2", function () {
-                gapi.auth2.init({client_id: "795847249157-6jcn4tdpv5vtf1a6vlf5jbssuk9bg366.apps.googleusercontent.com"});
-        });
-</script>
+        </script>
 </head>
 <body>
-        <button onclick="authenticate().then(loadClient)">authorize and load</button>
-        <button onclick="execute()">execute</button>
+    <div id="write">
+
+    </div>
 </body>
