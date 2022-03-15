@@ -7,14 +7,14 @@
                 .then (data =>
                 {
                         data = JSON.parse(data);
-                        data = data.snippet;
+                        data = data.items;
                         strHTML = "";
-                        // data.forEach(function (datum) {
-                        //     strHTML += datum.title + "<br>";
-                        // })
+                        data.forEach(function (datum) {
+                            strHTML += datum.snipped.title + "<br>";
+                        })
                         console.log(data);
-                        document.getElementById("write2").innerHTMl = res;
-                        // document.getElementById("write").innerHTMl = strHTML;
+                        // document.getElementById("write2").innerHTMl = res;
+                        document.getElementById("write").innerHTMl = strHTML;
                 })
         </script>
 </head>
