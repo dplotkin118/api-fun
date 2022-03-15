@@ -7,10 +7,12 @@
                 .then (data =>
                 {
                         data = JSON.parse(data);
+                        data = data.snippet.title;
                         strHTML = "";
                         // data.forEach(function (datum) {
                         //     strHTML += datum.title + "<br>";
                         // })
+                        console.log(data);
                         document.getElementById("write2").innerHTMl = res;
                         // document.getElementById("write").innerHTMl = strHTML;
                 })
