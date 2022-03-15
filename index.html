@@ -2,27 +2,64 @@
 
 <head>
         <script language="javascript">
-                res = fetch("https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=dogs&key=AIzaSyCo4AiKXJG8iFA4ob96ZpItGUocRzfvonU")
-                .then (res => res.text())
-                .then (data =>
-                {
-                        data = JSON.parse(data);
-                        data = data.items;
-                        strHTML = "";
-                        data.forEach(function (datum) {
-                            strHTML += datum.snippet.title + "<br>";
+                function usingAJAX () {
+                    request = new XMLHttpRequest();
+                    request.open("GET", "https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=dogs&key=AIzaSyCo4AiKXJG8iFA4ob96ZpItGUocRzfvonU", true);
+                    request.onreadystatechange = function () {
+                        console.log("3 - readystatechange event fired.");
+
+                        if (request.readyState == 4 && request.status == 200) {
+
+                            result = request.responseText;
+                            returnHTML = result;
+                            data = JSON.parse(result);
+                            data = data.items;
+                            strHTML = "";
+                            data.forEach(function (datum) {
+                                strHTML += datum.snippet.title + "<br>";
+                            })
+                            alert(strHTML);
+                            document.getElementById("write").innerHTML = strHTML;
+
+
+                        }
+                        else if (request.readyState == 4 && request.status != 200) {
+
+                            document.getElementById("write").innerHTML = "Something is wrong!  Check the logs to see where this went off the rails";
+
+                        }
+
+                        else if (request.readyState == 3) {
+
+                            document.getElementById("write").innerHTML = "Too soon!  Try again";
+
+                        }
+                    }
+                
+                }
+                function usingFetch () {
+                    res = fetch("https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=dogs&key=AIzaSyCo4AiKXJG8iFA4ob96ZpItGUocRzfvonU")
+                        .then(res => res.text())
+                        .then(data => {
+                            data = JSON.parse(data);
+                            data = data.items;
+                            strHTML = "";
+                            data.forEach(function (datum) {
+                                strHTML += datum.snippet.title + "<br>";
+                            })
+                            alert(strHTML);
+                            document.getElementById("write2").innerHTML = strHTML;
                         })
-                        alert(strHTML);
-                        // console.log(data[0].snippet.title);
-                        // document.getElementById("write2").innerHTMl = res;
-                        document.getElementById("write").innerHTML = strHTML;
-                })
+                }
+                
         </script>
 </head>
 <body>
     <h1>
         API Fun
     </h1>
+    <button id="first" value="Using AJAX" onclick="usingAJAX()"></button>
+    <button id="second" value="Using Fetch" onclick="usingFetch()"></button>
     <div id="write">
 
     </div>
