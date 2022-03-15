@@ -11,6 +11,7 @@
                         data.foreach(function (datum) {
                             strHTML += datum.title + "<br>";
                         })
+                        document.getElementById("write2").innerHTMl = res;
                         document.getElementById("write").innerHTMl = strHTML;
                 })
         </script>
@@ -18,5 +19,8 @@
 <body>
     <div id="write">
 
+    </div>
+    <div id="write2">
+        
     </div>
 </body>
