@@ -13,13 +13,16 @@
                             strHTML += datum.snippet.title + "<br>";
                         })
                         alert(strHTML);
-                        console.log(data[0].snippet.title);
+                        // console.log(data[0].snippet.title);
                         // document.getElementById("write2").innerHTMl = res;
-                        document.getElementById("write").innerHTMl = strHTML;
+                        document.getElementById("write").innerHTML = strHTML;
                 })
         </script>
 </head>
 <body>
+    <h1>
+        API Fun
+    </h1>
     <div id="write">
 
     </div>
