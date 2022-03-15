@@ -7,7 +7,11 @@
                 .then (data =>
                 {
                         data = JSON.parse(data);
-                        document.getElementById("write").innerHTMl = data;
+                        strHTML = "";
+                        data.foreach(function (datum) {
+                            strHTML += datum.title + "<br>";
+                        })
+                        document.getElementById("write").innerHTMl = strHTML;
                 })
         </script>
 </head>
